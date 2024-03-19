@@ -22,10 +22,10 @@ import org.jdbi.v3.core.Jdbi;
 import javax.ws.rs.core.Response;
 
 
-public class trueApplication extends Application<trueConfiguration> {
+public class TrueApplication extends Application<trueConfiguration> {
 
     public static void main(final String[] args) throws Exception {
-        new trueApplication().run(args);
+        new TrueApplication().run(args);
     }
 
     @Override
