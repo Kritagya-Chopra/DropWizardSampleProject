@@ -89,11 +89,29 @@
             <type>pom</type>
             <scope>import</scope>
         </dependency>
+        <dependency>
+            <groupId>org.liquibase</groupId>
+            <artifactId>liquibase-core</artifactId>
+            <version>4.26.0</version>
+        </dependency>
+
     </dependencies>
 
     <build>
         <pluginManagement>
             <plugins>
+                <plugin>
+                    <groupId>org.liquibase</groupId>
+                    <artifactId>liquibase-maven-plugin</artifactId>
+                    <version>4.25.1</version>
+                    <configuration>
+                        <changeLogFile>src/main/resources/db/changeLog/master-changelog.xml</changeLogFile>
+                        <outputChangeLogFile>src/main/resources/db/changeLog/master-changelog.xml</outputChangeLogFile>
+                        <!--set values for Liquibase properties and settings
+                        for example, the location of a properties file to use-->
+                        <propertyFile>config.yml</propertyFile>
+                    </configuration>
+                </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-shade-plugin</artifactId>
