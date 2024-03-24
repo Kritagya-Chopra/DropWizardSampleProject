@@ -4,13 +4,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import org.example.model.Cart;
 import org.example.model.Order;
-import org.skife.jdbi.v2.StatementContext;
-import org.skife.jdbi.v2.tweak.ResultSetMapper;
+import org.jdbi.v3.core.mapper.RowMapper;
+import org.jdbi.v3.core.statement.StatementContext;
 
 
-public class OrdersMapper implements ResultSetMapper<Order> {
+public class OrdersMapper implements RowMapper<Order> {
     private static final String ID = "orderId";
     private static final String USER_ID = "userId";
     private static final String CREATED_AT = "createdAt";
@@ -18,7 +17,7 @@ public class OrdersMapper implements ResultSetMapper<Order> {
 
 
 
-    public Order map(int i, ResultSet resultSet, StatementContext statementContext)
+    public Order map(ResultSet resultSet, StatementContext statementContext)
             throws SQLException {
         return new Order(resultSet.getLong(ID), resultSet.getLong(USER_ID), resultSet.getTimestamp(CREATED_AT).toLocalDateTime(),
                 resultSet.getLong(TOTAL_COST), new ArrayList<>()

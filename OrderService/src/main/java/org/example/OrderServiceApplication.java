@@ -1,14 +1,22 @@
 package org.example;
 
-import io.dropwizard.Application;
-import io.dropwizard.setup.Bootstrap;
-import io.dropwizard.setup.Environment;
+
+import io.dropwizard.core.Application;
+import io.dropwizard.core.setup.Bootstrap;
+import io.dropwizard.core.setup.Environment;
+import io.dropwizard.jdbi3.JdbiFactory;
+import org.checkerframework.checker.units.qual.C;
+import org.example.dao.CartsDao;
+import org.example.dao.OrderProductsDao;
+import org.example.dao.OrdersDao;
+import org.example.mapper.CartsMapper;
+import org.example.mapper.OrdersMapper;
 import org.example.resource.CartsResource;
 import org.example.resource.OrdersResource;
 import org.example.service.CartsService;
 import org.example.service.OrderProductsService;
 import org.example.service.OrdersService;
-import org.skife.jdbi.v2.DBI;
+import org.jdbi.v3.core.Jdbi;
 
 import javax.sql.DataSource;
 
@@ -34,13 +42,17 @@ public class OrderServiceApplication extends Application<OrderServiceConfigurati
     public void run(final OrderServiceConfiguration configuration,
                     final Environment environment) {
         // TODO: implement application
-        final DataSource dataSource =
-                configuration.getDataSourceFactory().build(environment.metrics(), SQL);
-        DBI dbi = new DBI(dataSource);
+        final JdbiFactory factory = new JdbiFactory();
+        final Jdbi dbi = factory.build(environment, configuration.getDataSourceFactory(), "sql");
+        dbi.registerRowMapper(new CartsMapper());
+        dbi.registerRowMapper(new OrdersMapper());
 
-        environment.jersey().register(new CartsResource(dbi.onDemand(CartsService.class)));
-        environment.jersey().register(new OrdersResource(dbi.onDemand(OrdersService.class), dbi.onDemand(OrderProductsService.class)
-        , dbi.onDemand(CartsService.class)));
+        environment.jersey().register(new CartsResource(new CartsService(dbi.onDemand(CartsDao.class))));
+        environment.jersey().register(new OrdersResource(new OrdersService(dbi.onDemand(OrderProductsDao.class), dbi
+                .onDemand(OrdersDao.class)), new OrderProductsService(dbi.onDemand(OrderProductsDao.class)), new CartsService(
+                        dbi.onDemand(CartsDao.class)
+        )));
+
 
     }
 
