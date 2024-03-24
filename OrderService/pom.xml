@@ -73,11 +73,7 @@
             <artifactId>jdbi3-sqlobject</artifactId>
             <version>3.36.0</version>
         </dependency>
-        <!--        <dependency>-->
-        <!--            <groupId>org.jdbi</groupId>-->
-        <!--            <artifactId>jdbi3-jdbi</artifactId>-->
-        <!--            <version>3.36.0</version>-->
-        <!--        </dependency>-->
+        
         <dependency>
             <groupId>io.dropwizard</groupId>
             <artifactId>dropwizard-db</artifactId>
