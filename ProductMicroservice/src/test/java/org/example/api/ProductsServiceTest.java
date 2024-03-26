@@ -14,6 +14,7 @@ import org.example.DTO.OrderEntry;
 import org.example.db.ProductsDao;
 import org.example.entity.Product;
 import org.example.service.ProductsService;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -50,6 +51,12 @@ public class ProductsServiceTest {
         List<Integer> ids = new ArrayList<>();
         ids.add(1);
         ids.add(2);
+        ids.add(3);
+        ids.add(4);
+        ids.add(1);
+        ids.add(2);
+        ids.add(3);
+        ids.add(4);
 
         // Act
         List<Product> p = productsService.getProducts(ids);
@@ -79,8 +86,10 @@ public class ProductsServiceTest {
     public void testCreateProduct_CreatesProductSuccessfully() {
         // Arrange
         Product product = new Product();
+        product.setProductID(1);
         doNothing().when(productsDao).createProduct(product);
         when(productsDao.lastInsertId()).thenReturn(1);
+//        doNothing().when(productsDao).editProduct(product);
         when(productsDao.getProduct(anyInt())).thenReturn(product);
 
         // Act

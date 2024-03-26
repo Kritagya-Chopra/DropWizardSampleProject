@@ -1,8 +1,10 @@
 package org.example.entity;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import java.time.*;
+
 
 public class Product {
 
@@ -67,6 +69,12 @@ public class Product {
 
     public Integer getQuantity() {
         return quantity;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("{productID=%d, name=%s, quantity=%d, rating=%.1f, code=%s, price=%.1f, description=%s, createdAt=%s, updatedAt=%s, createdBy=%d, updatedBy=%d}",
+                productID, name, quantity, rating, code, price, description, createdAt, updatedAt, createdBy, updatedBy);
     }
 
     public void setQuantity(Integer quantity) {
