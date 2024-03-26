@@ -2,21 +2,23 @@ package org.example.resources;
 import io.dropwizard.testing.junit5.DropwizardExtensionsSupport;
 import io.dropwizard.testing.junit5.ResourceExtension;
 import org.example.DTO.OrderEntry;
+import org.example.DTO.ResponseDTO;
 import org.example.entity.Product;
 import org.example.service.ProductsService;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-
 import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.Response;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertIterableEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
@@ -51,8 +53,7 @@ public class ProductsResourceTest {
         Response response = EXT.target("/products").request().get();
 
         assertThat(response.getStatus(), equalTo(Response.Status.OK.getStatusCode()));
-
-//        assertEquals(response.readEntity(ResponseDTO.class).getData(), productList);
+//        assertThat(((List<Product>)response.readEntity(ResponseDTO.class).getData()).size(), equalTo(2));
     }
 
     @Test

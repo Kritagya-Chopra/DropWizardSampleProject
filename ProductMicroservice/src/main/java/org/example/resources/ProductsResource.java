@@ -29,7 +29,7 @@ public class ProductsResource {
     @Timed
     public ResponseDTO<List<Product>> getProducts(@QueryParam("ids") final List<Integer> ids) {
         if (ids.isEmpty())
-            return new ResponseDTO<>(HttpStatus.OK_200, productsService.getProducts());
+            return new ResponseDTO<List<Product>>(HttpStatus.OK_200, productsService.getProducts());
         return new ResponseDTO<>(HttpStatus.OK_200, productsService.getProducts(ids));
     }
 

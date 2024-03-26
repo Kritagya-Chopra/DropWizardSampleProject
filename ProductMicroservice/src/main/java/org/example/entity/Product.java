@@ -4,9 +4,11 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import java.time.*;
+import java.util.Objects;
 
 
 public class Product {
+
 
     private Integer productID;
     @NotEmpty
@@ -71,11 +73,7 @@ public class Product {
         return quantity;
     }
 
-    @Override
-    public String toString() {
-        return String.format("{productID=%d, name=%s, quantity=%d, rating=%.1f, code=%s, price=%.1f, description=%s, createdAt=%s, updatedAt=%s, createdBy=%d, updatedBy=%d}",
-                productID, name, quantity, rating, code, price, description, createdAt, updatedAt, createdBy, updatedBy);
-    }
+
 
     public void setQuantity(Integer quantity) {
         this.quantity = quantity;
@@ -143,5 +141,35 @@ public class Product {
 
     public void setUpdatedBy(Integer updatedBy) {
         this.updatedBy = updatedBy;
+    }
+
+    @Override
+    public String toString() {
+        return "{" +
+                "productID=" + productID +
+                ", name=" + name +
+                ", quantity=" + quantity +
+                ", rating=" + rating +
+                ", code=" + code  +
+                ", price=" + price +
+                ", description=" + description  +
+                ", createdAt=" + createdAt +
+                ", updatedAt=" + updatedAt +
+                ", createdBy=" + createdBy +
+                ", updatedBy=" + updatedBy +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Product product = (Product) o;
+        return Objects.equals(productID, product.productID);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(productID);
     }
 }

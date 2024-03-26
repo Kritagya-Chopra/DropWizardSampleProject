@@ -60,6 +60,21 @@
             <artifactId>dropwizard-jdbi3</artifactId>
             <version>3.0.0</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/org.jdbi/jdbi3-jodatime2 -->
+        <dependency>
+            <groupId>org.jdbi</groupId>
+            <artifactId>jdbi3-jodatime2</artifactId>
+            <version>3.45.1</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.jdbi/jdbi3-testing -->
+        <dependency>
+            <groupId>org.jdbi</groupId>
+            <artifactId>jdbi3-testing</artifactId>
+            <version>3.45.1</version>
+            <scope>test</scope>
+        </dependency>
+
         <!-- https://mvnrepository.com/artifact/io.dropwizard/dropwizard-testing -->
         <dependency>
             <groupId>io.dropwizard</groupId>
