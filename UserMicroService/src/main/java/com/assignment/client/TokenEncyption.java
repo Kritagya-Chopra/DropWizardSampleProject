@@ -1,4 +1,4 @@
-package com.assignment.core;
+package com.assignment.client;
 
 
 import lombok.AllArgsConstructor;
@@ -8,7 +8,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@NoArgsConstructor
+
 public class TokenEncyption {
    static int key=10;
 

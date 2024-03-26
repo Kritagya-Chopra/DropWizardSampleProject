@@ -22,7 +22,7 @@ import org.jdbi.v3.core.Jdbi;
 import javax.ws.rs.core.Response;
 
 
-public class TrueApplication extends Application<trueConfiguration> {
+public class TrueApplication extends Application<TrueConfiguration> {
 
     public static void main(final String[] args) throws Exception {
         new TrueApplication().run(args);
@@ -34,12 +34,12 @@ public class TrueApplication extends Application<trueConfiguration> {
     }
 
     @Override
-    public void initialize(final Bootstrap<trueConfiguration> bootstrap) {
+    public void initialize(final Bootstrap<TrueConfiguration> bootstrap) {
         // TODO: application initialization
     }
 
     @Override
-    public void run(final trueConfiguration configuration, final Environment environment) {
+    public void run(final TrueConfiguration configuration, final Environment environment) {
         final JdbiFactory factory = new JdbiFactory();
         final Jdbi jdbi = factory.build(environment, configuration.getDataSourceFactory(), "sql");
         jdbi.registerRowMapper(new UserMap());
@@ -48,6 +48,7 @@ public class TrueApplication extends Application<trueConfiguration> {
 
 
         environment.jersey().register(new UserController(new UserService(userDao)));
+
 
         environment.jersey()
                 .register(new AuthDynamicFeature(new OAuthCredentialAuthFilter.Builder<User>()
