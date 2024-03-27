@@ -1,6 +1,6 @@
 database:
   driverClass: com.mysql.cj.jdbc.Driver
-  url: jdbc:mysql://localhost:3306/OrderService?useSSL=false
+  url: jdbc:mysql://localhost:3306/OrderService?allowPublicKeyRetrieval=true&useSSL=false
   user: root
   password: 987654321
   maxWaitForConnection: 1s

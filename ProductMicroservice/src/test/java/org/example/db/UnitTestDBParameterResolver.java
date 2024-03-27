@@ -59,7 +59,7 @@ public class UnitTestDBParameterResolver implements ParameterResolver {
          * JDBI instance for Unit Test DB
          */
 
-        jdbi = Jdbi.create(DB_ROOT_URL + "/Testing", DB_USER, DB_PASSWORD).installPlugin(new SqlObjectPlugin()).installPlugin(new JodaTimePlugin());
+        jdbi = Jdbi.create(DB_ROOT_URL + "/Testing?useSSL=false", DB_USER, DB_PASSWORD).installPlugin(new SqlObjectPlugin()).installPlugin(new JodaTimePlugin());
         jdbi.registerRowMapper(new ProductMapper());
         /*
          * Populate the parameter store with the appropriate injectable objects

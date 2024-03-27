@@ -5,6 +5,7 @@ import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -17,6 +18,19 @@ public class ProductDaoTest {
     @BeforeAll
     public void setup(ProductsDao productsDao) {
         this.productsDao = productsDao;
+    }
+
+    @BeforeEach
+    public void preCleanDb(ProductsDao productsDao)
+    {
+        List<Product> all = productsDao.getProducts();
+
+        if (!all.isEmpty()) {
+            for(Product p : all)
+            {
+                productsDao.deleteProduct(p.getProductID());
+            }
+        }
     }
 
     @Test

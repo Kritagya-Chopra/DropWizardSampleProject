@@ -4,8 +4,7 @@ package com.assignment.security;
 import java.util.Optional;
 
 
-import com.assignment.core.TokenEncyption;
-import com.assignment.dao.UserDao;
+import com.assignment.client.TokenEncyption;
 import io.dropwizard.auth.AuthenticationException;
 import io.dropwizard.auth.Authenticator;
 
