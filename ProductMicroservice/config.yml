@@ -5,7 +5,7 @@ logging:
 
 database:
   driverClass: com.mysql.cj.jdbc.Driver
-  url: jdbc:mysql://localhost:3306/e-commerce?useSSL=false
+  url: jdbc:mysql://localhost:3306/e-commerce
   user: root
   password: kcwaa@12
   maxWaitForConnection: 1s
