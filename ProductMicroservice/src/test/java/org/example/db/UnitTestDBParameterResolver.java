@@ -3,6 +3,7 @@ package org.example.db;/*
  */
 
 
+import org.example.mapper.ProductMapper;
 import org.jdbi.v3.core.Jdbi;
 import org.jdbi.v3.jodatime2.JodaTimePlugin;
 import org.jdbi.v3.sqlobject.SqlObjectPlugin;

@@ -9,7 +9,6 @@ import java.util.Objects;
 
 public class Product {
 
-
     private Integer productID;
     @NotEmpty
     private String name;
@@ -43,16 +42,6 @@ public class Product {
         this.updatedBy = updatedBy;
     }
 
-    public Product(String name, Integer quantity, String code, Double price, String description, Integer createdBy, Integer updatedBy) {
-        this.name = name;
-        this.quantity = quantity;
-        this.code = code;
-        this.price = price;
-        this.description = description;
-        this.createdBy = createdBy;
-        this.updatedBy = updatedBy;
-    }
-
     public Integer getProductID() {
         return productID;
     }
@@ -72,8 +61,6 @@ public class Product {
     public Integer getQuantity() {
         return quantity;
     }
-
-
 
     public void setQuantity(Integer quantity) {
         this.quantity = quantity;

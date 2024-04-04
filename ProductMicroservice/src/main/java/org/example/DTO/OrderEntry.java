@@ -6,8 +6,10 @@ import javax.validation.constraints.NotNull;
 
 public class OrderEntry {
     @JsonProperty("id")
+    @NotNull
     Integer id;
     @JsonProperty("quantity")
+    @NotNull
     Integer quantity;
 
     public OrderEntry() {

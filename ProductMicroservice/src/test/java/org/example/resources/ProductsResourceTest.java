@@ -25,7 +25,6 @@ import static org.mockito.Mockito.*;
 @ExtendWith(DropwizardExtensionsSupport.class)
 public class ProductsResourceTest {
     private static final ProductsService service = mock(ProductsService.class);
-
     private static final ResourceExtension EXT = ResourceExtension.builder()
             .addResource(new ProductsResource(service))
             .build();

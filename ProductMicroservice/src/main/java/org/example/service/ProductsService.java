@@ -13,13 +13,10 @@ import org.example.entity.Product;
 import org.jdbi.v3.sqlobject.CreateSqlObject;
 
 public  class ProductsService {
-
     private static final String PRODUCT_NOT_FOUND = "Product id %s not found.";
     private static final String PRODUCT_NOT_ENOUGH = "Product id %s is low on stock.";
     private static final String SUCCESS = "Success...";
     private static final String UNEXPECTED_ERROR = "An unexpected error occurred while deleting product.";
-
-
     private ProductsDao productsDao;
 
     public ProductsService(ProductsDao productsDao) {

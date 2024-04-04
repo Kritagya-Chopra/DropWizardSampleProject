@@ -28,8 +28,8 @@ public class ProductsResource {
     @GET
     @Timed
     public ResponseDTO<List<Product>> getProducts(@QueryParam("ids") final List<Integer> ids) {
-        if (ids.isEmpty())
-            return new ResponseDTO<List<Product>>(HttpStatus.OK_200, productsService.getProducts());
+        if (ids == null || ids.isEmpty())
+            return new ResponseDTO<>(HttpStatus.OK_200, productsService.getProducts());
         return new ResponseDTO<>(HttpStatus.OK_200, productsService.getProducts(ids));
     }
 
@@ -37,7 +37,7 @@ public class ProductsResource {
     @Timed
     @Consumes(MediaType.APPLICATION_JSON)
     public ResponseDTO<Product> createProduct(@NotNull final Product product) {
-        return new ResponseDTO<Product>(HttpStatus.OK_200, productsService.createProduct(product));
+        return new ResponseDTO<>(HttpStatus.OK_200, productsService.createProduct(product));
     }
 
     @PUT
@@ -46,14 +46,14 @@ public class ProductsResource {
     public ResponseDTO<Product> editProduct(@NotNull final Product product,
                                             @PathParam("id") final int id) {
         product.setProductID(id);
-        return new ResponseDTO<Product>(HttpStatus.OK_200, productsService.editProduct(product));
+        return new ResponseDTO<>(HttpStatus.OK_200, productsService.editProduct(product));
     }
 
     @DELETE
     @Timed
     @Path("{id}")
     public ResponseDTO<String> deleteProduct(@PathParam("id") final int id) {
-        return new ResponseDTO<String>(HttpStatus.OK_200, productsService.deleteProduct(id));
+        return new ResponseDTO<>(HttpStatus.OK_200, productsService.deleteProduct(id));
     }
 
     @PUT

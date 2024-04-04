@@ -1,4 +1,4 @@
-package org.example.api;
+package org.example.service;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
@@ -23,10 +23,8 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 @ExtendWith(MockitoExtension.class)
 public class ProductsServiceTest {
-
     @Mock
     private ProductsDao productsDao;
-
     @InjectMocks
     private ProductsService productsService;
 

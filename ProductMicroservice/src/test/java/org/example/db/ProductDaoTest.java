@@ -12,7 +12,6 @@ import static org.junit.jupiter.api.Assertions.*;
 @ExtendWith({UnitTestDBParameterResolver.class})
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class ProductDaoTest {
-
     private ProductsDao productsDao;
 
     @BeforeAll
