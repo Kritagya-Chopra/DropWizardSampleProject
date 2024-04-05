@@ -48,7 +48,6 @@ public class ProductDaoTest {
         product.setUpdatedBy(1);
         productsDao.createProduct(product);
 
-
         // Retrieve Product
         List<Product> productList = productsDao.getProducts();
         int id = 0;
@@ -63,7 +62,6 @@ public class ProductDaoTest {
         Product retrievedProduct = productsDao.getProduct(id);
         assertNotNull(retrievedProduct);
         assertEquals(product.getCode(), retrievedProduct.getCode());
-
 
         // Update Product
         retrievedProduct.setName("Updated Test Product");

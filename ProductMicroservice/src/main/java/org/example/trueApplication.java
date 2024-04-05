@@ -44,7 +44,6 @@ public class trueApplication extends Application<trueConfiguration> {
         final Jdbi jdbi = factory.build(environment, configuration.getDataSourceFactory(), "sql");
         jdbi.registerRowMapper(new ProductMapper());
 
-        environment.jersey().register(new ProductsResource(new ProductsService(jdbi.onDemand(ProductsDao.class)) {
-        }));
+        environment.jersey().register(new ProductsResource(new ProductsService(jdbi.onDemand(ProductsDao.class))));
     }
 }

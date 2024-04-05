@@ -1,4 +1,5 @@
 package org.example.service;
+
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
@@ -38,6 +39,7 @@ public class ProductsServiceTest {
         List<Product> actualProducts = productsService.getProducts();
 
         // Assert
+        assertNotNull(actualProducts);
         assertEquals(expectedProducts, actualProducts);
     }
 
@@ -86,7 +88,6 @@ public class ProductsServiceTest {
         product.setProductID(1);
         doNothing().when(productsDao).createProduct(product);
         when(productsDao.lastInsertId()).thenReturn(1);
-//        doNothing().when(productsDao).editProduct(product);
         when(productsDao.getProduct(anyInt())).thenReturn(product);
 
         // Act

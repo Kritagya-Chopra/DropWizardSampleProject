@@ -10,6 +10,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import javax.ws.rs.WebApplicationException;
+import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.Response;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -52,7 +53,7 @@ public class ProductsResourceTest {
         Response response = EXT.target("/products").request().get();
 
         assertThat(response.getStatus(), equalTo(Response.Status.OK.getStatusCode()));
-//        assertThat(((List<Product>)response.readEntity(ResponseDTO.class).getData()).size(), equalTo(2));
+        assertThat(response.readEntity(new GenericType<ResponseDTO<List<Product>>>() {}).getData(), equalTo(productList));
     }
 
     @Test
@@ -66,7 +67,7 @@ public class ProductsResourceTest {
         Response response = EXT.target("/products").queryParam("ids", "1" ).queryParam("ids" , "2").request().get();
 
         assertThat(response.getStatus(), equalTo(Response.Status.OK.getStatusCode()));
-//        assertThat(response.readEntity(ResponseDTO.class), equalTo(productList));
+        assertThat(response.readEntity(new GenericType<ResponseDTO<List<Product>>>() {}).getData(), equalTo(productList));
     }
 
     @Test
@@ -76,7 +77,7 @@ public class ProductsResourceTest {
         Response response = EXT.target("/products").request().post(javax.ws.rs.client.Entity.json(product));
 
         assertThat(response.getStatus(), equalTo(Response.Status.OK.getStatusCode()));
-//        assertThat(response.readEntity(ResponseDTO.class).getData(), equalTo(product));
+        assertThat(response.readEntity(new GenericType<ResponseDTO<Product>>() {}).getData(), equalTo(product));
     }
 
     @Test
@@ -95,7 +96,7 @@ public class ProductsResourceTest {
         Response response = EXT.target("/products/1").request().put(javax.ws.rs.client.Entity.json(product));
 
         assertThat(response.getStatus(), equalTo(Response.Status.OK.getStatusCode()));
-//        assertThat(response.readEntity(ResponseDTO.class).getData(), equalTo(product));
+        assertThat(response.readEntity(new GenericType<ResponseDTO<Product>>() {}).getData(), equalTo(product));
     }
 
     @Test
@@ -114,7 +115,7 @@ public class ProductsResourceTest {
         Response response = EXT.target("/products/1").request().delete();
 
         assertThat(response.getStatus(), equalTo(Response.Status.OK.getStatusCode()));
-//        assertThat(response.readEntity(ResponseDTO.class).getData(), equalTo("Success"));
+        assertThat(response.readEntity(new GenericType<ResponseDTO<String>>() {}).getData(), equalTo("Success"));
     }
 
     @Test
@@ -129,12 +130,13 @@ public class ProductsResourceTest {
     @Test
     void testPlaceOrder() {
         List<OrderEntry> orderEntries = Arrays.asList(new OrderEntry(1, 5), new OrderEntry(2, 10));
-        when(service.placeOrder(orderEntries)).thenReturn("Updated Successfully");
+        when(service.placeOrder(anyList())).thenReturn("Updated Successfully");
 
         Response response = EXT.target("/products/order").request().put(javax.ws.rs.client.Entity.json(orderEntries));
 
         assertThat(response.getStatus(), equalTo(Response.Status.OK.getStatusCode()));
-//        assertThat(response.readEntity(ResponseDTO.class).getData(), equalTo("Updated Successfully"));
+        ResponseDTO<String> s = response.readEntity(new GenericType<ResponseDTO<String>>(){});
+        assertThat(s.getData(), equalTo("Updated Successfully"));
     }
 
 }

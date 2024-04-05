@@ -6,6 +6,9 @@ public class ResponseDTO<T> {
     private long code;
     private T data;
 
+    public ResponseDTO() {
+    }
+
     public ResponseDTO(long code, T data) {
         this.code = code;
         this.data = data;
